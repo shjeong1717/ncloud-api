@@ -1,0 +1,68 @@
+[2024-01-17 18:17:38,152] [test] [INFO] [api.py:26] => timestamp == <method 'timestamp' of 'datetime.datetime' objects>
+[2024-01-17 18:22:21,957] [test] [INFO] [api.py:27] => timestamp == 1705483341.940493
+[2024-01-17 18:25:56,935] [test] [INFO] [api.py:27] => timestamp == time.struct_time(tm_year=2024, tm_mon=1, tm_mday=17, tm_hour=9, tm_min=25, tm_sec=56, tm_wday=2, tm_yday=17, tm_isdst=-1)
+[2024-01-17 18:27:12,910] [test] [INFO] [api.py:25] => now_dt == 2024-01-17 18:27:12.895523
+[2024-01-17 18:27:12,910] [test] [INFO] [api.py:26] => now_ts == time.struct_time(tm_year=2024, tm_mon=1, tm_mday=17, tm_hour=9, tm_min=27, tm_sec=12, tm_wday=2, tm_yday=17, tm_isdst=-1)
+[2024-01-17 18:27:44,352] [test] [INFO] [api.py:25] => now_dt == 2024-01-17 18:27:44.333531
+[2024-01-17 18:27:44,352] [test] [INFO] [api.py:26] => now_ts == time.struct_time(tm_year=2024, tm_mon=1, tm_mday=17, tm_hour=18, tm_min=27, tm_sec=44, tm_wday=2, tm_yday=17, tm_isdst=-1)
+[2024-01-17 18:58:24,304] [test] [INFO] [api.py:25] => now_dt == 2024-01-17 18:58:24.296559
+[2024-01-17 18:58:24,305] [test] [INFO] [api.py:26] => now_ts == 1705485504.296563
+[2024-01-17 18:59:56,241] [test] [INFO] [api.py:25] => now_dt == 2024-01-17 18:59:56
+[2024-01-17 18:59:56,241] [test] [INFO] [api.py:26] => now_ts == 1705485596.22426
+[2024-01-17 19:07:42,006] [test] [INFO] [api.py:25] => now_dt == 2024-01-17 19:07:41
+[2024-01-17 19:07:42,007] [test] [INFO] [api.py:26] => now_ts == 1705486061.988144
+[2024-01-17 19:08:12,435] [test] [INFO] [api.py:25] => now_dt == 2024-01-17 19:08:12
+[2024-01-17 19:08:12,435] [test] [INFO] [api.py:26] => now_ts == 1705486092.418847
+[2024-01-17 19:12:28,880] [test] [INFO] [api.py:25] => now_dt == 2024-01-17 19:12:28
+[2024-01-17 19:12:28,882] [test] [INFO] [api.py:26] => now_ts == 1705486348.862572
+[2024-01-17 19:15:12,024] [test] [INFO] [api.py:25] => now_dt == 2024-01-17 19:15:12
+[2024-01-17 19:15:12,025] [test] [INFO] [api.py:26] => now_ts == 1705486512007182
+[2024-01-17 19:15:35,635] [test] [INFO] [api.py:25] => now_dt == 2024-01-17 19:15:35
+[2024-01-17 19:15:35,635] [test] [INFO] [api.py:26] => now_ts == 1705486535.6269
+[2024-01-17 19:15:35,635] [test] [INFO] [api.py:27] => now_ts == 17054865356269
+[2024-01-17 19:16:12,509] [test] [INFO] [api.py:25] => now_dt == 2024-01-17 19:16:12
+[2024-01-17 19:16:12,510] [test] [INFO] [api.py:26] => now_ts == 1705486572.500999
+[2024-01-17 19:16:12,510] [test] [INFO] [api.py:27] => now_ts == 1705486572500999
+[2024-01-17 19:18:04,276] [test] [INFO] [api.py:25] => now_dt == 2024-01-17 19:18:04
+[2024-01-17 19:18:04,276] [test] [INFO] [api.py:26] => now_ts == 1705486684.267518
+[2024-01-17 19:22:06,517] [test] [INFO] [api.py:25] => now_dt == 2024-01-17 19:22:06
+[2024-01-17 19:22:06,518] [test] [INFO] [api.py:26] => now_ts == 1705486926500
+[2024-01-17 19:22:56,915] [test] [INFO] [api.py:25] => now_dt == 2024-01-17 19:22:56
+[2024-01-17 19:22:56,915] [test] [INFO] [api.py:26] => now_ts == 1705486976900
+[2024-01-18 15:02:27,978] [test] [INFO] [api.py:25] => now_dt == 2024-01-18 15:02:27
+[2024-01-18 15:02:27,978] [test] [INFO] [api.py:26] => now_ts == 1705557747800
+[2024-01-18 15:03:27,321] [test] [INFO] [api.py:25] => now_dt == 2024-01-18 15:03:27
+[2024-01-18 15:03:27,321] [test] [INFO] [api.py:26] => now_ts == 1705557807309
+[2024-01-18 15:03:54,502] [test] [INFO] [api.py:25] => now_dt == 2024-01-18 15:03:54
+[2024-01-18 15:03:54,502] [test] [INFO] [api.py:26] => now_ts == 1705557834493
+[2024-01-18 15:04:09,474] [test] [INFO] [api.py:25] => now_dt == 2024-01-18 15:04:09
+[2024-01-18 15:04:09,475] [test] [INFO] [api.py:26] => now_ts == 1705557849466
+[2024-01-18 15:05:42,132] [test] [INFO] [api.py:25] => now_dt == 2024-01-18 15:05:42
+[2024-01-18 15:05:42,132] [test] [INFO] [api.py:26] => now_ts == 1705557942114
+[2024-01-18 15:09:54,664] [test] [INFO] [api.py:25] => now_dt == 2024-01-18 15:09:54
+[2024-01-18 15:09:54,664] [test] [INFO] [api.py:26] => now_ts == 1705558194643
+[2024-01-18 15:18:49,061] [test] [INFO] [test.py:38] => ds == {'BOARD_SEQ': 4, 'TITLE': '1번 게시글 제목', 'CONTENT': '1번 게시글 내용', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'N', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 10, 24, 18, 23, 26), 'MOD_DATE': None, 'MOD_USER_SEQ': None}
+[2024-01-18 15:21:10,931] [test] [INFO] [test.py:38] => ds == [{'BOARD_SEQ': 4, 'TITLE': '1번 게시글 제목', 'CONTENT': '1번 게시글 내용', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'N', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 10, 24, 18, 23, 26), 'MOD_DATE': None, 'MOD_USER_SEQ': None}, {'BOARD_SEQ': 5, 'TITLE': '제목영역', 'CONTENT': '내용영역', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'N', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 10, 24, 21, 26, 23), 'MOD_DATE': None, 'MOD_USER_SEQ': None}, {'BOARD_SEQ': 6, 'TITLE': '세번째 제목입력', 'CONTENT': '내용은 아무거나 넣습니다.\r\n테스트니까요1234\r\n\r\n1252151', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'N', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 10, 25, 10, 14, 42), 'MOD_DATE': datetime.datetime(2023, 10, 30, 16, 32, 14), 'MOD_USER_SEQ': '1'}, {'BOARD_SEQ': 7, 'TITLE': '3번 게시글 제목', 'CONTENT': '3번 게시글 내용1111', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'N', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 10, 25, 14, 4, 7), 'MOD_DATE': datetime.datetime(2023, 10, 30, 11, 33, 34), 'MOD_USER_SEQ': '1'}, {'BOARD_SEQ': 8, 'TITLE': '1번 게시글 제목', 'CONTENT': '1번 게시글 내용', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'N', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 10, 25, 14, 4, 7), 'MOD_DATE': None, 'MOD_USER_SEQ': None}, {'BOARD_SEQ': 9, 'TITLE': '3번 게시글 제목', 'CONTENT': '3번 게시글 내용', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'N', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 10, 27, 16, 30, 14), 'MOD_DATE': None, 'MOD_USER_SEQ': None}, {'BOARD_SEQ': 10, 'TITLE': '1번 게시글 제목', 'CONTENT': '1번 게시글 내용', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'Y', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 10, 27, 16, 30, 14), 'MOD_DATE': datetime.datetime(2023, 10, 30, 13, 26, 1), 'MOD_USER_SEQ': '1'}, {'BOARD_SEQ': 11, 'TITLE': '3번 게시글 제목', 'CONTENT': '3번 게시글 내용\r\n\r\naskgjlsakgj\r\n\r\njakldsgjlksajglsd', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'N', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 10, 30, 13, 18, 18), 'MOD_DATE': datetime.datetime(2023, 10, 30, 16, 14, 30), 'MOD_USER_SEQ': '1'}, {'BOARD_SEQ': 12, 'TITLE': '1번 게시글 제목', 'CONTENT': '1번 게시글 내용', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'N', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 10, 30, 13, 18, 18), 'MOD_DATE': None, 'MOD_USER_SEQ': None}, {'BOARD_SEQ': 13, 'TITLE': '3번 게시글 제목', 'CONTENT': '3번 게시글 내용', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'N', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 10, 30, 14, 41), 'MOD_DATE': None, 'MOD_USER_SEQ': None}, {'BOARD_SEQ': 14, 'TITLE': '1번 게시글 제목', 'CONTENT': '1번 게시글 내용', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'N', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 10, 30, 14, 41), 'MOD_DATE': None, 'MOD_USER_SEQ': None}, {'BOARD_SEQ': 15, 'TITLE': '3번 게시글 제목', 'CONTENT': '3번 게시글 내용', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'N', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 12, 13, 18, 10, 59), 'MOD_DATE': None, 'MOD_USER_SEQ': None}, {'BOARD_SEQ': 16, 'TITLE': '1번 게시글 제목', 'CONTENT': '1번 게시글 내용', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'N', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 12, 13, 18, 10, 59), 'MOD_DATE': None, 'MOD_USER_SEQ': None}]
+[2024-01-18 15:23:09,110] [test] [INFO] [test-db.py:33] => ds == [{'BOARD_SEQ': 4, 'TITLE': '1번 게시글 제목', 'CONTENT': '1번 게시글 내용', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'N', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 10, 24, 18, 23, 26), 'MOD_DATE': None, 'MOD_USER_SEQ': None}, {'BOARD_SEQ': 5, 'TITLE': '제목영역', 'CONTENT': '내용영역', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'N', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 10, 24, 21, 26, 23), 'MOD_DATE': None, 'MOD_USER_SEQ': None}, {'BOARD_SEQ': 6, 'TITLE': '세번째 제목입력', 'CONTENT': '내용은 아무거나 넣습니다.\r\n테스트니까요1234\r\n\r\n1252151', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'N', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 10, 25, 10, 14, 42), 'MOD_DATE': datetime.datetime(2023, 10, 30, 16, 32, 14), 'MOD_USER_SEQ': '1'}, {'BOARD_SEQ': 7, 'TITLE': '3번 게시글 제목', 'CONTENT': '3번 게시글 내용1111', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'N', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 10, 25, 14, 4, 7), 'MOD_DATE': datetime.datetime(2023, 10, 30, 11, 33, 34), 'MOD_USER_SEQ': '1'}, {'BOARD_SEQ': 8, 'TITLE': '1번 게시글 제목', 'CONTENT': '1번 게시글 내용', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'N', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 10, 25, 14, 4, 7), 'MOD_DATE': None, 'MOD_USER_SEQ': None}, {'BOARD_SEQ': 9, 'TITLE': '3번 게시글 제목', 'CONTENT': '3번 게시글 내용', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'N', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 10, 27, 16, 30, 14), 'MOD_DATE': None, 'MOD_USER_SEQ': None}, {'BOARD_SEQ': 10, 'TITLE': '1번 게시글 제목', 'CONTENT': '1번 게시글 내용', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'Y', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 10, 27, 16, 30, 14), 'MOD_DATE': datetime.datetime(2023, 10, 30, 13, 26, 1), 'MOD_USER_SEQ': '1'}, {'BOARD_SEQ': 11, 'TITLE': '3번 게시글 제목', 'CONTENT': '3번 게시글 내용\r\n\r\naskgjlsakgj\r\n\r\njakldsgjlksajglsd', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'N', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 10, 30, 13, 18, 18), 'MOD_DATE': datetime.datetime(2023, 10, 30, 16, 14, 30), 'MOD_USER_SEQ': '1'}, {'BOARD_SEQ': 12, 'TITLE': '1번 게시글 제목', 'CONTENT': '1번 게시글 내용', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'N', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 10, 30, 13, 18, 18), 'MOD_DATE': None, 'MOD_USER_SEQ': None}, {'BOARD_SEQ': 13, 'TITLE': '3번 게시글 제목', 'CONTENT': '3번 게시글 내용', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'N', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 10, 30, 14, 41), 'MOD_DATE': None, 'MOD_USER_SEQ': None}, {'BOARD_SEQ': 14, 'TITLE': '1번 게시글 제목', 'CONTENT': '1번 게시글 내용', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'N', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 10, 30, 14, 41), 'MOD_DATE': None, 'MOD_USER_SEQ': None}, {'BOARD_SEQ': 15, 'TITLE': '3번 게시글 제목', 'CONTENT': '3번 게시글 내용', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'N', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 12, 13, 18, 10, 59), 'MOD_DATE': None, 'MOD_USER_SEQ': None}, {'BOARD_SEQ': 16, 'TITLE': '1번 게시글 제목', 'CONTENT': '1번 게시글 내용', 'USER_SEQ': 1, 'VIEW_CNT': 0, 'NOTICE_YN': 'N', 'DEL_YN': 'N', 'REG_DATE': datetime.datetime(2023, 12, 13, 18, 10, 59), 'MOD_DATE': None, 'MOD_USER_SEQ': None}]
+[2024-01-18 15:25:06,045] [test] [INFO] [api.py:25] => now_dt == 2024-01-18 15:25:06
+[2024-01-18 15:25:06,045] [test] [INFO] [api.py:26] => now_ts == 1705559106036
+[2024-01-18 15:26:35,282] [test] [INFO] [api.py:25] => now_dt == 2024-01-18 15:26:35
+[2024-01-18 15:26:35,282] [test] [INFO] [api.py:26] => now_ts == 1705559195273
+[2024-01-18 15:28:24,194] [test] [INFO] [api.py:25] => now_dt == 2024-01-18 15:28:24
+[2024-01-18 15:28:24,194] [test] [INFO] [api.py:26] => now_ts == 1705559304174
+[2024-01-18 15:30:06,426] [test] [INFO] [api.py:25] => now_dt == 2024-01-18 15:30:06
+[2024-01-18 15:30:06,427] [test] [INFO] [api.py:26] => now_ts == 1705559406408
+[2024-01-18 15:30:47,027] [test] [INFO] [api.py:25] => now_dt == 2024-01-18 15:30:47
+[2024-01-18 15:30:47,027] [test] [INFO] [api.py:26] => now_ts == 1705559447017
+[2024-01-18 15:31:06,909] [test] [INFO] [api.py:25] => now_dt == 2024-01-18 15:31:06
+[2024-01-18 15:31:06,909] [test] [INFO] [api.py:26] => now_ts == 1705559466900
+[2024-01-18 15:31:17,704] [test] [INFO] [api.py:25] => now_dt == 2024-01-18 15:31:17
+[2024-01-18 15:31:17,704] [test] [INFO] [api.py:26] => now_ts == 1705559477695
+[2024-01-18 15:32:36,834] [test] [INFO] [api.py:25] => now_dt == 2024-01-18 15:32:36
+[2024-01-18 15:32:36,835] [test] [INFO] [api.py:26] => now_ts == 1705559556826
+[2024-01-18 15:37:16,463] [test] [INFO] [api.py:25] => now_dt == 2024-01-18 15:37:16
+[2024-01-18 15:37:16,463] [test] [INFO] [api.py:26] => now_ts == 1705559836454
+[2024-01-18 15:37:30,822] [test] [INFO] [api.py:25] => now_dt == 2024-01-18 15:37:30
+[2024-01-18 15:37:30,822] [test] [INFO] [api.py:26] => now_ts == 1705559850814
+[2024-01-18 15:39:40,686] [test] [INFO] [api.py:25] => now_dt == 2024-01-18 15:39:40
+[2024-01-18 15:39:40,686] [test] [INFO] [api.py:26] => now_ts == 1705559980677
