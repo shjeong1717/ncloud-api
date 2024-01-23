@@ -38,7 +38,7 @@ def send_api(path, method):
   headers["x-ncp-iam-access-key"] = con._ACCESS_KEY
   
   body = {}
-  body["resourceType"] = "Bucket"
+  body["resourceType"] = "Server"
   
   try:
     if method == 'GET':

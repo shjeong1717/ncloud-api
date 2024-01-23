@@ -1,30 +1,36 @@
 #import system library
 import sys
+import requests
 import json
+import yaml
 from datetime import datetime
-from flask import Flask, request
-from flask_restful import Resource, Api
 
 # import user library
 sys.path.insert(0, '/Users/sanghoonjeong/Work/cloud/workspace/ncloud-api')
 from _lib import config as con
-from _lib import cMysql
 from _lib import cLogger
 from _lib import function as fnc
 
 # set logger
-cLog = cLogger.cLogger("/api/getSystemSchemaKeyList")
+cLog = cLogger.cLogger("/api/template/metric/deleteMetricsGrp")
 logger = cLog.set_logger()
 
 #set variables
 now_dt = con._NOW_DT
 now_ts = str(con._NOW_TS)
-filename = ""
-method = "GET"
+filename = con._YAML_DIR +"metric.yaml"
+method = "DELETE"
+dataType = "deleteData"
 
-def send_api():
-  path = "/cw_fea/real/cw/api/schema/system/list"
-  body = {}
+
+def send_api(param):
+  path = "/cw_fea/real/cw/api/rule/group/metrics/del?prodKey="+ param['prodKey']
+  
+  # request body
+  body = []
+  for id in param['groupIds']:
+    body.append(id)
+  # end for
   
   API_HOST = "https://cw.apigw.ntruss.com"
   url = API_HOST + path
@@ -41,26 +47,25 @@ def send_api():
   objApi['method'] = method
   result = fnc.call_api(objApi)
   
-  return result
-# end def
-
-# main
-def main():
-  result = send_api()
-  
+  print("result data == %s" % result)
   rsltData = json.loads(result)
   
-  objList = []
-  for data in rsltData['data']:
-    objData = {}
-    objData[data['prodName']] = data['cw_key']
-    objList.append(objData)
-    # print('==========================================')
-    # print(data["prodName"] +" : "+ data["cw_key"])
-  # end for
+  if rsltData['status'] == 200:
+    print("메트릭그룹 삭제 완료")
+  else:
+    print("메트릭그룹 삭제 실패 [ %s ]" % rsltData['data']['msg'])
+# end def
+
+def main():
+  with open(filename) as yamlfile:
+    yamldata = yaml.full_load(yamlfile)
+  #end with
   
-  jsonData = json.dumps(objList, indent=2)
-  print("result == %s" % jsonData)
+  list = yamldata[dataType]
+  
+  for data in list:
+    send_api(data)
+  # end for
 # end def
 
 if __name__ == "__main__":

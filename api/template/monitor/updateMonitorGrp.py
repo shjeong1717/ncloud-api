@@ -12,20 +12,27 @@ from _lib import cLogger
 from _lib import function as fnc
 
 # set logger
-cLog = cLogger.cLogger("/api/getAllMonitorGrp")
+cLog = cLogger.cLogger("/api/template/updateMonitorGrp")
 logger = cLog.set_logger()
 
 #set variables
 now_dt = con._NOW_DT
 now_ts = str(con._NOW_TS)
 filename = con._YAML_DIR +"monitor.yaml"
-method = "GET"
-dataType = "selectData"
+method = "PUT"
+dataType = "updateData"
 
 
 def send_api(param):
-  path = "/cw_fea/real/cw/api/rule/group/monitor/"+ param['prodKey']
+  path = "/cw_fea/real/cw/api/rule/group/monitor"
+  
+  # request body
   body = {}
+  body["prodKey"] = param['prodKey']
+  body["id"] = param['id']
+  body["groupName"] = param['groupName']
+  body["groupDesc"] = param['groupDesc']
+  body["monitorGroupItemList"] = param['monitorGroupItemList']
   
   API_HOST = "https://cw.apigw.ntruss.com"
   url = API_HOST + path
@@ -42,7 +49,13 @@ def send_api(param):
   objApi['method'] = method
   result = fnc.call_api(objApi)
   
-  return result
+  print("result data == %s" % result)
+  rsltData = json.loads(result)
+  
+  if rsltData['status'] == 200:
+    print("감시대상그룹 수정 완료")
+  else:
+    print("감시대상그룹 수정 실패 [ %s ]" % rsltData['data']['msg'])
 # end def
 
 # main
@@ -54,8 +67,7 @@ def main():
   list = yamldata[dataType]
   
   for data in list:
-    result = send_api(data)
-    print("result data == %s" % result)
+    send_api(data)
   # end for
 # end def
 

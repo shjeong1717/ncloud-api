@@ -1,0 +1,58 @@
+selectData:
+  - prodKey: "460438474722512896"
+createData:
+  - prodKey: "460438474722512896"
+    groupName: server group 1
+    groupDesc: group of server1
+    metricsGroupItems:
+      - metric: "used_rto"
+        desc: "CPU used ratio"
+        eventLevel: "INFO"
+        condition: "GE"
+        calculation: "AVG"
+        duration: "1"
+        threshold: "50.0"
+        # dimensions: 
+        #   - dim:
+        #     val:
+      - metric: "idle_rto"
+        desc: "idle ratio"
+        eventLevel: "INFO"
+        condition: "GE"
+        calculation: "AVG"
+        duration: "1"
+        threshold: "50.0"
+        # dimensions:
+        #   - dim:
+        #     val:
+updateData:
+  - prodKey: "460438474722512896"
+    id: "947194920677019648"
+    groupName: server group 1
+    groupDesc: group of server 1
+    metricsGroupItems:
+      - metric: "used_rto"
+        desc: "CPU used ratio"
+        eventLevel: "INFO"
+        condition: "GT"
+        calculation: "AVG"
+        duration: "1"
+        threshold: "50.0"
+        # dimensions: 
+        #   - dim:
+        #     val:
+      - metric: "idle_rto"
+        desc: "idle ratio"
+        eventLevel: "INFO"
+        condition: "GE"
+        calculation: "AVG"
+        duration: "5"
+        threshold: "30.0"
+        # dimensions:
+        #   - dim:
+        #     val:
+deleteData:
+  - prodKey: "460438474722512896"
+    groupIds:
+      - "947197192505012224"
+      - "947194920677019648"

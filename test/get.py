@@ -48,9 +48,9 @@ def send_api(path, method):
     print("response status == %s" % response.status_code)
     print("response text == %s" % response.text)
   except Exception as ex:
-    print(ex)
+    print("exception [%s]" % ex)
   # end try
 # end def
 
 # 호출 예시
-send_api("/cw_fea/real/cw/api/custom/resource/list", "GET")
+send_api("/cw_fea/real/cw/api/schema?cw_key=635182529925746688&prodName=System/Object+Storage", "GET")

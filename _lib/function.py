@@ -7,12 +7,21 @@ import os
 import hashlib
 import hmac
 import base64
+import json
+import requests
 
 # import user library
-sys.path.insert(0, '/home/crawler')
+sys.path.insert(0, '/Users/sanghoonjeong/Work/cloud/workspace/ncloud-api')
 from _lib import config as con
 from _lib import cMysql
 from _lib import function as fnc
+
+sys.path.append('/Users/sanghoonjeong/Work/cloud/workspace/ncloud-api/api')
+import getNotificationRecipientList as noti
+import getSystemSchemaKeyList as schema
+import getAllMonitorGrp as monitor
+import getMetricsGroupList as metric
+import getRuleGroupList as rule
 
 #####################################################################################
 ### common function
@@ -90,3 +99,109 @@ def	make_signature(uri, now_ts, method):
 	message = bytes(message, 'UTF-8')
 	signingKey = base64.b64encode(hmac.new(secret_key, message, digestmod=hashlib.sha256).digest())
 	return signingKey
+# end def
+
+# make header
+def make_header(params):
+  now_ts = int(datetime.now().timestamp() * 1000)
+  sign = fnc.make_signature(params['path'], str(now_ts), params['method'])
+  
+  headers = {}
+  headers["Content-Type"] = "application/json"
+  headers["x-ncp-apigw-signature-v2"] = sign
+  headers["x-ncp-apigw-timestamp"] = str(now_ts)
+  headers["x-ncp-iam-access-key"] = con._ACCESS_KEY
+  
+  return headers
+# end def
+
+# Call API
+def call_api(params):
+  try:
+    if params['method'] == 'GET':
+      response = requests.get(params['url'], headers=params['headers'])
+    elif params['method'] == 'POST':
+      response = requests.post(params['url'], headers=params['headers'], data=json.dumps(params['body'], ensure_ascii=False, indent="\t"))
+    elif params['method'] == 'PUT':
+      response = requests.put(params['url'], headers=params['headers'], data = json.dumps(params['body'], ensure_ascii=False, indent="\t"))
+    elif params['method'] == 'DELETE':
+      response = requests.delete(params['url'], headers=params['headers'], data = json.dumps(params['body'], ensure_ascii=False, indent="\t"))
+    # end if
+    
+    # print("response status == %s" % response.status_code)
+    # print("response text == %s" % response.text)
+    
+    rsltData = {}
+    if response.text != "":
+      rsltData = json.loads(response.text)
+    # end if
+    
+    objData = {}
+    objData['status'] = response.status_code
+    objData['data'] = rsltData
+		
+    return json.dumps(objData, indent=2)
+  except Exception as ex:
+    print("exception [%s]" % ex)
+  # end try
+# end def
+
+# Get monitor group
+def getMonitorGrpKey(param):
+  result = monitor.send_api(param)
+  listData = json.loads(result)['data']
+  print("================= Monitor Group Key =================")
+  for data in listData:
+    print(data['groupName'] +" : "+ data['id'])
+  #end for
+#end def
+
+# Get metric group
+def getMetricGrpKey(param):
+  result = metric.send_api(param)
+  listData = json.loads(result)
+  print("================= Metric Group Key =================")
+  for data in listData:
+    print(data['groupName'] +" : "+ data['id'])
+  #end for
+#end def
+
+# Get noti info
+def getNotiInfo():
+  result = noti.send_api()
+  objData = json.loads(result)['data']
+  rsltData = json.dumps(objData, indent=2)
+  print("================= Notification Info =================")
+  print(rsltData)
+  #end for
+#end def
+
+# Get system schema list
+def getSystemSchemaList():
+  result = schema.send_api()
+  rsltData = json.loads(result)
+  print("================= System Schema Info =================")
+  objList = []
+  for data in rsltData['data']:
+    objData = {}
+    objData[data['prodName']] = data['cw_key']
+    objList.append(objData)
+    print(data["prodName"] +" : "+ data["cw_key"])
+  # end for
+# end def
+
+# Get rule group list
+def getRuleGroupList(param):
+  result = rule.send_api(param)
+  rsltData = json.loads(result)
+  print("================= Rule Group Info =================")
+  objList = []
+  for data in rsltData['data']['ruleGroups']:
+    objData = {}
+    objData['prodKey'] = data['prodKey']
+    objData['groupName'] = data['groupName']
+    objData['ruleGroupId'] = data['id']
+    objList.append(objData)
+  # end for
+  print(objList)
+# end def
