@@ -35,6 +35,7 @@ def send_api(param):
   body["monitorGroupKey"] = param['monitorGroupKey']
   body["metricsGroupKey"] = param['metricsGroupKey']
   body['recipientNotifications'] = param['recipientNotifications']
+  body['personalNotificationRecipients'] = param['personalNotificationRecipients']
   
   API_HOST = "https://cw.apigw.ntruss.com"
   url = API_HOST + path

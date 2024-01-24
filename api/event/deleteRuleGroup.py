@@ -70,7 +70,7 @@ def main():
       'pageSize': 100,
       'pageNum': 1
     }
-    fnc.getRuleGroupList(data)
+    fnc.getRuleGroupIdList(data)
   # end if
   
   x = input("\n\n이벤트 룰을 삭제하시겠습니까??\n삭제하려면 yaml파일을 작성하고 [ok] 를 누르세요 : ")

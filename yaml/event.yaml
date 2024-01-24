@@ -10,31 +10,43 @@ createData:
     monitorGroupKey:
       - "947199450403708928"
     metricsGroupKey:
-      - "947199586315935744"
+      - "946910851774947328"
     recipientNotifications:
       - groupName: "jsh noti"
         groupNum: "7158"
         notifyTypes:
           - "SMS"
           - "EMAIL"
-    # personalNotificationRecipients:
-    #   - managerName: 
-    #     managerNo: 
+    personalNotificationRecipients:
+      # - managerName: "정상훈"
+      #   managerNo: 742063
+      #   notifyTypes:
+      #     - "SMS"
+      #     - "EMAIL"
+updateData:
+  - prodKey: "460438474722512896"
+    id: "837707886858735616"
+    groupName: "d"
+    groupDesc: "event of server1"
+    monitorGroupKey:
+      - "726460230787010560"
+    metricsGroupKey:
+      - "837707886166679552"
+    recipientNotifications:
+    #   - groupName: "jsh noti"
+    #     groupNum: "7158"
     #     notifyTypes:
     #       - "SMS"
     #       - "EMAIL"
-updateData:
-  - prodKey: "460438474722512896"
-    id: "947186381933916160"
-    groupName: server group mod
-    groupDesc: group of server mod
-    monitorGroupItemList:
-      - resourceId: "20693193"
-        nrn: 
-      - resourceId: "20220231"
-        nrn: 
+    personalNotificationRecipients:
+      - managerName: "정상훈"
+        managerNo: 742063
+        notifyTypes:
+          - "SMS"
+          - "EMAIL"
+    suspendRuleItems:
       - resourceId: "13851989"
-        nrn: 
+        metricGroupItemId: "837707784685494273"
 deleteData:
   - prodKey: "460438474722512896"
-    ruleGroupId: "947232576416919552"
+    ruleGroupId: "947536577024892928"

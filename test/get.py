@@ -42,7 +42,7 @@ def send_api(path, method):
     if method == 'GET':
       response = requests.get(url, headers=headers)
     elif method == 'POST':
-      response = requests.post(url, headers=headers, data=json.dumps(body, ensure_ascii=False, indent="\t"))
+      response = requests.post(url, headers=headers, data=json.dumps(body))
     # end if
     
     print("response status == %s" % response.status_code)
@@ -53,4 +53,4 @@ def send_api(path, method):
 # end def
 
 # 호출 예시
-send_api("/cw_fea/real/cw/api/schema?cw_key=635182529925746688&prodName=System/Object+Storage", "GET")
+send_api("/cw_fea/real/cw/api/custom/resource/list", "GET")

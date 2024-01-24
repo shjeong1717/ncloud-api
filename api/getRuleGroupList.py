@@ -50,7 +50,6 @@ def send_api(param):
 
 # main
 def main(param):
-  print(param)
   if 'prodKey' in param:
     param['pageNum'] = input("\n\n페이지 번호를 입력하세요.\n종료하려면 비어있는 채로 엔터키를 입력하세요 [input number or empty] : ")
   else:
@@ -70,7 +69,6 @@ def main(param):
   if param['pageNum'] == '':
     param['pageNum'] = 'exit'
   # end if
-  
   objParam = {
     "prodKey": param['prodKey'],
     "search": param['search'],
@@ -81,7 +79,6 @@ def main(param):
   if objParam['pageNum'] != 'exit':
     if objParam['prodKey'] != '':
       result = send_api(objParam)
-      print("result == %s" % result)
       
       rsltData = json.loads(result)
       listData = []
