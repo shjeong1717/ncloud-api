@@ -1,9 +1,7 @@
 #import system library
 import sys
-import requests
 import json
 import yaml
-from datetime import datetime
 
 # import user library
 sys.path.append('/Users/sanghoonjeong/Work/cloud/workspace/ncloud-api')

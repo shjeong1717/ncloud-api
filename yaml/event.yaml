@@ -5,10 +5,10 @@ selectData:
   pageNum: 1
 createData:
   - prodKey: "460438474722512896"
-    groupName: server event 1
-    groupDesc: event of server1
+    groupName: server event 2
+    groupDesc: event of server 2
     monitorGroupKey:
-      - "947199450403708928"
+      - "726460230787010560"
     metricsGroupKey:
       - "946910851774947328"
     recipientNotifications:
@@ -25,9 +25,9 @@ createData:
       #     - "EMAIL"
 updateData:
   - prodKey: "460438474722512896"
-    id: "837707886858735616"
-    groupName: "d"
-    groupDesc: "event of server1"
+    id: "947563273052635136"
+    groupName: "server event 1"
+    groupDesc: "event of server mod"
     monitorGroupKey:
       - "726460230787010560"
     metricsGroupKey:
@@ -45,8 +45,8 @@ updateData:
           - "SMS"
           - "EMAIL"
     suspendRuleItems:
-      - resourceId: "13851989"
-        metricGroupItemId: "837707784685494273"
+      # - resourceId: "13851989"
+      #   metricGroupItemId: "837707784685494273"
 deleteData:
   - prodKey: "460438474722512896"
     ruleGroupId: "947536577024892928"

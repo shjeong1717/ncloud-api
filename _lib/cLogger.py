@@ -1,6 +1,7 @@
 # import library
 import logging
 import logging.handlers
+from _lib import config as con
 
 
 # logging class

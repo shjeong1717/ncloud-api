@@ -1,14 +1,12 @@
 #import system library
 import sys
-import requests
-import json
-import time
+import os
 from datetime import datetime
 from flask import Flask, request
 from flask_restful import Resource, Api
 
 # import user library
-sys.path.insert(0, '/Users/sanghoonjeong/Work/cloud/workspace/ncloud-api')
+sys.path.append('/Users/sanghoonjeong/Work/cloud/workspace/ncloud-api')
 from _lib import config as con
 from _lib import cMysql
 from _lib import cLogger
@@ -22,10 +20,8 @@ app = Flask(__name__)
 
 @app.route("/", methods=['GET', 'POST'])
 def hello():
-  a = datetime.now()
-  b = a.timestamp()
-  c = a.timestamp() * 1000
-  z = "now == "+ str(a) +" // timestampmilli == "+ str(b) +" // timestamp == "+ str(c)
+  z = "Hello Python Flask"
+  print("dir == "+ os.getcwd())
   return z
 
 if __name__ == '__main__':

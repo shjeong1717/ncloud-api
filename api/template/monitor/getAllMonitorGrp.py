@@ -1,29 +1,29 @@
 #import system library
 import sys
+import requests
 import json
+import yaml
 from datetime import datetime
-from flask import Flask, request
-from flask_restful import Resource, Api
 
 # import user library
-sys.path.insert(0, '/Users/sanghoonjeong/Work/cloud/workspace/ncloud-api')
+sys.path.append('/Users/sanghoonjeong/Work/cloud/workspace/ncloud-api')
 from _lib import config as con
-from _lib import cMysql
 from _lib import cLogger
 from _lib import function as fnc
 
 # set logger
-cLog = cLogger.cLogger("/api/getSystemSchemaKeyList")
+cLog = cLogger.cLogger("/api/getAllMonitorGrp")
 logger = cLog.set_logger()
 
 #set variables
 now_dt = con._NOW_DT
 now_ts = str(con._NOW_TS)
-filename = ""
+filename = con._YAML_DIR +"/monitor.yaml"
 method = "GET"
+dataType = "selectData"
 
-def send_api():
-  path = "/cw_fea/real/cw/api/schema/system/list"
+def send_api(param):
+  path = "/cw_fea/real/cw/api/rule/group/monitor/"+ param['prodKey']
   body = {}
   
   API_HOST = "https://cw.apigw.ntruss.com"
@@ -46,21 +46,16 @@ def send_api():
 
 # main
 def main():
-  result = send_api()
+  with open(filename) as yamlfile:
+    yamldata = yaml.full_load(yamlfile)
+  #end with
   
-  rsltData = json.loads(result)
+  list = yamldata[dataType]
   
-  objList = []
-  for data in rsltData['data']:
-    objData = {}
-    objData[data['prodName']] = data['cw_key']
-    objList.append(objData)
-    # print('==========================================')
-    # print(data["prodName"] +" : "+ data["cw_key"])
+  for data in list:
+    result = send_api(data)
+    print("result data == %s" % result)
   # end for
-  
-  jsonData = json.dumps(objList, indent=2)
-  print("result == %s" % jsonData)
 # end def
 
 if __name__ == "__main__":
