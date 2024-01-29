@@ -2,6 +2,7 @@
 import os, sys
 import json
 import yaml
+import clipboard
 
 # import user library
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
@@ -32,7 +33,6 @@ def send_api(param):
   objApi['method'] = param['method']
   result = fnc.call_api(objApi)
   
-  print("result data == %s" % result)
   rsltData = json.loads(result)
   
   return rsltData
@@ -166,8 +166,9 @@ def eventSelect(param):
         #end for
         listData.append(objData)
       # end for
-      jsonData = json.dumps(listData, indent=2)
-      print(jsonData)
+      jsonData = json.dumps(listData, indent=2, ensure_ascii=False)
+      clipboard.copy(jsonData)
+      print(jsonData +"\n\n결과가 클립보드에 저장되었습니다.")
       
       eventSelect(objArg['requestBody'])
     # end if
@@ -176,13 +177,24 @@ def eventSelect(param):
 
 
 # eventUpdate
-def eventUpdate():
+def eventUpdate(param):
   x = input("\n\n클라우드 플랫폼 상품의 prodKey(cw_key)를 조회하시겠습니까? [ok] : ")
   if x == 'ok':
-    fnc.getSystemSchemaList()
+    commonApi.getSystemSchemaKeyList()
   # end if
   
-  prodKey = input("\n\nprodKey를 입력하세요. 이벤트 룰 ID를 조회합니다 [input 'prodKey'] : ")
+  # prodKey = input("\n\nprodKey를 입력하세요. 이벤트 룰 ID를 조회합니다 [input 'prodKey'] : ")
+  # if prodKey != '':
+  #   arg = {
+  #     'prodKey': prodKey,
+  #     'search': '',
+  #     'pageSize': 100,
+  #     'pageNum': 1
+  #   }
+  #   commonApi.getRuleGroupIdList(arg)
+  # # end if
+  
+  prodKey = input("\n\nprodKey를 입력하세요. 이벤트 룰 정보를 조회합니다. [input 'prodKey'] : ")
   if prodKey != '':
     arg = {
       'prodKey': prodKey,
@@ -190,28 +202,19 @@ def eventUpdate():
       'pageSize': 100,
       'pageNum': 1
     }
-    fnc.getRuleGroupIdList(arg)
+    commonApi.getRuleGroupList(arg)
   # end if
   
-  ruleGroupId = input("\n\nruleGroupId를 입력하세요. 이벤트 룰 정보를 조회합니다 [input 'ruleGroupId'] : ")
-  if ruleGroupId != '':
-    arg = {
-      'prodKey': prodKey,
-      'search': ruleGroupId,
-      'pageSize': 100,
-      'pageNum': 1
-    }
-    fnc.getRuleGroupList(arg)
-  # end if
-  
-  x = input("\n\nprodKey를 입력하세요. 감시대상, 메트릭 그룹, 알림대상자 정보를 조회합니다 [input 'prodKey'] : ")
-  if x != '':
-    arg = {
-      'prodKey': x,
-    }
-    fnc.getMonitorGrpKey(arg)
-    fnc.getMetricGrpKey(arg)
-    fnc.getNotiInfo()
+  if prodKey != '':
+    x = input("\n\n감시대상, 메트릭 그룹, 알림대상자 정보를 조회하시겠습니까? [input 'ok'] : ")
+    if x != '':
+      arg = {
+        'prodKey': prodKey,
+      }
+      commonApi.getMonitorGrpKey(arg)
+      commonApi.getMetricGrpKey(arg)
+      commonApi.getNotiInfo()
+    # end if
   # end if
   
   x = input("\n\n이벤트 룰을 수정하시겠습니까??\n생성하려면 yaml파일을 작성하고 [ok] 를 누르세요 : ")
@@ -220,31 +223,52 @@ def eventUpdate():
       yamldata = yaml.full_load(yamlfile)
     #end with
     
-    list = yamldata[dataType]
-    
+    list = yamldata[param['dataType']]
+    arg = {}
     for data in list:
-      send_api(data)
+      arg['method'] = 'POST'
+      arg['path'] = '/cw_fea/real/cw/api/rule/group/ruleGrp/update'
+      
+      # request body
+      body = {}
+      body["prodKey"] = data['prodKey']
+      body["id"] = data['id']
+      body["groupName"] = data['groupName']
+      body["groupDesc"] = data['groupDesc']
+      body["monitorGroupKey"] = data['monitorGroupKey']
+      body["metricsGroupKey"] = data['metricsGroupKey']
+      body['recipientNotifications'] = data['recipientNotifications']
+      body['personalNotificationRecipients'] = data['personalNotificationRecipients']
+      body["suspendRuleItems"] = data['suspendRuleItems']
+      arg['requestBody'] = body
+      
+      result = send_api(arg)
+      
+      if result['status'] == 200:
+        print("이벤트 룰 수정 완료")
+      else:
+        print("이벤트 룰 수정 실패 [ %s ]" % result['data']['msg'])
     # end for
   # end if
 # end def
 
 
 # eventDelete
-def eventDelete():
+def eventDelete(param):
   x = input("\n\n클라우드 플랫폼 상품의 prodKey(cw_key)를 조회하시겠습니까? [ok] : ")
   if x == 'ok':
-    fnc.getSystemSchemaList()
+    commonApi.getSystemSchemaKeyList()
   # end if
   
-  x = input("\n\nprodKey를 입력하세요.\n이벤트 룰 정보를 조회합니다 [input 'prodKey'] : ")
-  if x != '':
-    data = {
-      'prodKey': x,
+  prodKey = input("\n\nprodKey를 입력하세요.\n이벤트 룰 아이디 정보를 조회합니다 [input 'prodKey'] : ")
+  if prodKey != '':
+    arg = {
+      'prodKey': prodKey,
       'search': '',
       'pageSize': 100,
       'pageNum': 1
     }
-    fnc.getRuleGroupIdList(data)
+    commonApi.getRuleGroupIdList(arg)
   # end if
   
   x = input("\n\n이벤트 룰을 삭제하시겠습니까??\n삭제하려면 yaml파일을 작성하고 [ok] 를 누르세요 : ")
@@ -253,10 +277,24 @@ def eventDelete():
       yamldata = yaml.full_load(yamlfile)
     #end with
     
-    list = yamldata[dataType]
+    list = yamldata[param['dataType']]
     
     for data in list:
-      send_api(data)
+      arg = {}
+      arg['method'] = 'POST'
+      arg['path'] = '/cw_fea/real/cw/api/rule/group/ruleGrp/del'
+      
+      # requestBody
+      body = {}
+      body['items'] = data
+      arg['requestBody'] = body
+      
+      result = send_api(arg)
+      
+      if result['status'] == 200:
+        print("이벤트 룰 삭제 완료")
+      else:
+        print("이벤트 룰 삭제 실패 [ %s ]" % result['data']['msg'])
     # end for
   # end if
 # end def
@@ -264,7 +302,7 @@ def eventDelete():
 # main
 def main():
   inputMsg = """
-  이벤트 룰에서 진행할 작업을 선택하세요.
+  진행할 작업을 선택하세요.
   1. 생성
   2. 조회
   3. 수정

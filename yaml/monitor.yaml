@@ -1,13 +1,15 @@
-selectData:
-  - prodKey: "460438474722512896"
 createData:
   - prodKey: "460438474722512896"
-    groupName: server group 1
-    groupDesc: group of server1
+    groupName: server group jsh
+    groupDesc: group of server jsh
     monitorGroupItemList:
       - resourceId: "21368611"
         nrn: 
       - resourceId: "13851989"
+        nrn:
+      - resourceId: "20220231"
+        nrn:
+      - resourceId: "20693193"
         nrn:
   # - prodKey: "460438474722512896"
   #   groupName: server group 2
@@ -19,7 +21,7 @@ createData:
   #       nrn: 
 updateData:
   - prodKey: "460438474722512896"
-    id: "947186381933916160"
+    id: "949372295816810496"
     groupName: server group mod
     groupDesc: group of server mod
     monitorGroupItemList:
@@ -32,6 +34,5 @@ updateData:
 deleteData:
   - prodKey: "460438474722512896"
     groupIds:
-      - "947188330141978624"
-      - "947186381933916160"
-      - "947186379526381568"
+      - "949372295816810496"
+      - "947199450403708928"

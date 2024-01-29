@@ -1,80 +1,85 @@
 #import system library
-import sys
-import requests
+import os, sys
 import json
-from datetime import datetime
+import yaml
+import clipboard
 
 # import user library
-sys.path.append('/Users/sanghoonjeong/Work/cloud/workspace/ncloud-api')
-from _lib import config as con
-from _lib import cLogger
-from _lib import function as fnc
-
-# set logger
-cLog = cLogger.cLogger("/api/searchMetricList")
-logger = cLog.set_logger()
-
-#set variables
-now_dt = con._NOW_DT
-now_ts = str(con._NOW_TS)
-
-# logger.info("now_dt == "+ str(now_dt))
-# logger.info("now_ts == "+ str(now_ts))
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+import config as con
+import function as fnc
 
 
-def send_api(path, method):
+def send_api(param):
   API_HOST = "https://cw.apigw.ntruss.com"
-  url = API_HOST + path
-  sign = fnc.make_signature(path, now_ts, method)
+  url = API_HOST + param['path']
   
-  headers = {}
-  headers["Content-Type"] = "application/json"
-  headers["x-ncp-apigw-signature-v2"] = sign
-  headers["x-ncp-apigw-timestamp"] = now_ts
-  headers["x-ncp-iam-access-key"] = con._ACCESS_KEY
+  objHeader = {}
+  objHeader['path'] = param['path']
+  objHeader['method'] = param['method']
+  headers = fnc.make_header(objHeader)
+  
+  objApi = {}
+  objApi['url'] = url
+  objApi['headers'] = headers
+  objApi['body'] = param['requestBody']
+  objApi['method'] = param['method']
+  result = fnc.call_api(objApi)
+  
+  rsltData = json.loads(result)
+  
+  return rsltData
+# end def
+
+def select():
+  # 1. input prodKey
+  # 2. select
+  #     - all
+  #     - dimension type
+  # 3. select dimension type
+  #     - cpu
+  #     - svr
+  #     - disk
+  #     ...
+  # 4. search query string
+  
+  arg = {}
+  arg['method'] = 'POST'
+  arg['path'] = '/cw_fea/real/cw/api/rule/group/metric/search'
   
   body = {}
   body["prodKey"] = "460438474722512896"
   body["query"] = ""    # Search in metrics
-  body["dimValues"] = {"name": "type", "value": "svr"}   # metric type
-  # body["dimValues"] = {}
+  # body["dimValues"] = {
+  #   "name": "type",
+  #   "value": "disk"
+  # }   # metric type
+  arg['requestBody'] = body
   
-  try:
-    if method == 'GET':
-      response = requests.get(url, headers=headers)
-    elif method == 'POST':
-      response = requests.post(url, headers=headers, data=json.dumps(body, ensure_ascii=False, indent="\t"))
-    elif method == 'PUT':
-      response = requests.put(url, headers=headers, data = json.dumps(body, ensure_ascii=False, indent="\t"))
-    elif method == 'DELETE':
-      response = requests.delete(url, headers=headers, data = json.dumps(body, ensure_ascii=False, indent="\t"))
-    # end if
-    
-    # print("response status == %s" % response.status_code)
-    # print("response text == %s" % response.text)
-    
-    rsltData = json.loads(response.text)
-    objList = []
-    for data in rsltData['metrics']:
-      objData = {}
-      objData['metric'] = data['metric']
-      objData['desc'] = data['desc']
-      objData['dimensions'] = data['dimensions']
-      objData['calculation'] = data['options']['Min1']
-      objList.append(objData)
-      # print('==========================================')
-      # print("metric == %s" % str(data['metric']))
-      # print("desc == %s" % str(data['desc']))
-      # print("dimensions == %s" % str(data['dimensions']))
-      # print("options == %s" % str(data['options']['Min1']))
-    # end for
-    
-    jsonData = json.dumps(objList)
-    print(jsonData)
-  except Exception as ex:
-    print("exception [%s]" % ex)
-  # end try
+  result = send_api(arg)
+  tmp = json.dumps(result, indent=2, ensure_ascii=False)
+  clipboard.copy(tmp)
+  print(tmp +"\n\n결과가 클립보드에 저장되었습니다.")
+  # listData = []
+  # for data in result['data']:
+  #   objData = {}
+  #   objData['metric'] = data['metric']
+  #   objData['desc'] = data['desc']
+  #   objData['dimensions'] = data['dimensions']
+  #   objData['calculation'] = data['options']['Min1']
+  #   listData.append(objData)
+  #   # print('==========================================')
+  #   # print("metric == %s" % str(data['metric']))
+  #   # print("desc == %s" % str(data['desc']))
+  #   # print("dimensions == %s" % str(data['dimensions']))
+  #   # print("options == %s" % str(data['options']['Min1']))
+  # # end for
+  
+  # finData = json.dumps(listData, indent=2, ensure_ascii=False)
+  # print(finData)
 # end def
 
-# 호출 예시
-send_api("/cw_fea/real/cw/api/rule/group/metric/search", "POST")
+
+if __name__ == "__main__":
+  select()
+# end if

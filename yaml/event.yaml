@@ -1,19 +1,14 @@
-selectData:
-  prodKey: "460438474722512896"
-  search: ""
-  pageSize: 100
-  pageNum: 1
 createData:
   - prodKey: "460438474722512896"
-    groupName: server event 2
-    groupDesc: event of server 2
+    groupName: server event 3
+    groupDesc: event of server 3
     monitorGroupKey:
-      - "726460230787010560"
+      - "943205024438300672"
     metricsGroupKey:
-      - "946910851774947328"
+      - "730116866944667648"
     recipientNotifications:
-      - groupName: "jsh noti"
-        groupNum: "7158"
+      - groupName: "Auto_Test001"
+        groupNum: "997"
         notifyTypes:
           - "SMS"
           - "EMAIL"
@@ -25,9 +20,9 @@ createData:
       #     - "EMAIL"
 updateData:
   - prodKey: "460438474722512896"
-    id: "947563273052635136"
-    groupName: "server event 1"
-    groupDesc: "event of server mod"
+    id: "949336637047967744"
+    groupName: "server event 3"
+    groupDesc: "event of server 3 mod"
     monitorGroupKey:
       - "726460230787010560"
     metricsGroupKey:
@@ -45,8 +40,10 @@ updateData:
           - "SMS"
           - "EMAIL"
     suspendRuleItems:
-      # - resourceId: "13851989"
-      #   metricGroupItemId: "837707784685494273"
+      - resourceId: "20220231"
+        metricGroupItemId: "837707784685494273"
 deleteData:
   - prodKey: "460438474722512896"
-    ruleGroupId: "947536577024892928"
+    ruleGroupId: "949336637047967744"
+  - prodKey: "460438474722512896"
+    ruleGroupId: "947963497881415680"

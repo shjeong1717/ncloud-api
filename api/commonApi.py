@@ -1,6 +1,7 @@
 #import system library
 import os, sys
 import json
+import clipboard
 from datetime import datetime
 
 # import user library
@@ -38,11 +39,15 @@ def getSystemSchemaKeyList():
   
   result = send_api(arg)
   rsltData = json.loads(result)['data']
-  
   print("================= System Schema Info Start =================")
+  listData = []
   for data in rsltData:
-    print(data["prodName"] +" : "+ data["cw_key"])
+    objData = {data['prodName'] : data['cw_key']}
+    listData.append(objData)
   # end for
+  finData = json.dumps(listData, indent=2, ensure_ascii=False)
+  clipboard.copy(finData)
+  print(finData)
   print("================= System Schema Info End =================")
 # end def
 
@@ -57,9 +62,14 @@ def getMonitorGrpKey(param):
   result = send_api(arg)
   rsltData = json.loads(result)['data']
   print("================= Monitor Group Key Start =================")
+  listData = []
   for data in rsltData:
-    print(data['groupName'] +" : "+ data['id'])
+    objData = {data['groupName'] : data['id']}
+    listData.append(objData)
   #end for
+  finData = json.dumps(listData, indent=2, ensure_ascii=False)
+  clipboard.copy(finData)
+  print(finData)
   print("================= Monitor Group Key End =================")
 # end def
 
@@ -74,9 +84,14 @@ def getMetricGrpKey(param):
   result = send_api(arg)
   rsltData = json.loads(result)['data']['metricsGroups']
   print("================= Metric Group Key Start =================")
+  listData = []
   for data in rsltData:
-    print(data['groupName'] +" : "+ data['id'])
+    objData = {data['groupName'] : data['id']}
+    listData.append(objData)
   #end for
+  finData = json.dumps(listData, indent=2, ensure_ascii=False)
+  clipboard.copy(finData)
+  print(finData)
   print("================= Metric Group Key End =================")
 # end def
 
@@ -91,9 +106,13 @@ def getNotiInfo():
   result = send_api(arg)
   rsltData = json.loads(result)['data']
   print("================= Notification Info Start =================")
+  listData = []
   for data in rsltData:
-    print(data)
+    listData.append(data)
   # end for
+  finData = json.dumps(listData, indent=2, ensure_ascii=False)
+  clipboard.copy(finData)
+  print(finData)
   print("================= Notification Info End =================")
 #end def
 
@@ -105,24 +124,25 @@ def getRuleGroupIdList(param):
   arg['path'] = '/cw_fea/real/cw/api/rule/group/ruleGrp/query'
   arg['requestBody'] = {
     'prodKey': param['prodKey'],
-    'search': '',
-    'pageSize': 100,
-    'pageNum': 1
+    'search': param['search'],
+    'pageSize': param['pageSize'],
+    'pageNum': param['pageNum']
   }
   
   result = send_api(arg)
   rsltData = json.loads(result)['data']
   print("================= Rule Group ID Info Start =================")
-  # finData = []
+  listData = []
   for data in rsltData['ruleGroups']:
-    # objData = {}
-    # objData['prodKey'] = data['prodKey']
-    # objData['groupName'] = data['groupName']
-    # objData['ruleGroupId'] = data['id']
-    # finData.append(objData)
-    print(data)
+    objData = {}
+    objData['prodKey'] = data['prodKey']
+    objData['groupName'] = data['groupName']
+    objData['ruleGroupId'] = data['id']
+    listData.append(objData)
   # end for
-  # print(json.dumps(finData, indent=2))
+  finData = json.dumps(listData, indent=2, ensure_ascii=False)
+  clipboard.copy(finData)
+  print(finData)
   print("================= Rule Group ID Info End =================")
 # end def
 
@@ -134,15 +154,15 @@ def getRuleGroupList(param):
   arg['path'] = '/cw_fea/real/cw/api/rule/group/ruleGrp/query'
   arg['requestBody'] = {
     'prodKey': param['prodKey'],
-    'search': '',
-    'pageSize': 100,
-    'pageNum': 1
+    'search': param['search'],
+    'pageSize': param['pageSize'],
+    'pageNum': param['pageNum']
   }
   
   result = send_api(arg)
   rsltData = json.loads(result)['data']
   print("================= Rule Group Info Start =================")
-  finData = []
+  listData = []
   for data in rsltData['ruleGroups']:
     objData = {}
     objData['prodKey'] = data['prodKey']
@@ -182,9 +202,11 @@ def getRuleGroupList(param):
       #end for
       objData['metricsGroups'].append(objMetric)
     #end for
-    finData.append(objData)
-    print(objData)
+    listData.append(objData)
+    # print(objData)
   # end for
+  finData = json.dumps(listData, indent=2, ensure_ascii=False)
+  clipboard.copy(finData)
+  print(finData)
   print("================= Rule Group Info End =================")
-  # print(json.dumps(finData, indent=2))
 # end def

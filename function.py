@@ -128,7 +128,7 @@ def call_api(params):
     objData['status'] = response.status_code
     objData['data'] = rsltData
     
-    return json.dumps(objData, indent=2)
+    return json.dumps(objData, indent=2, ensure_ascii=False)
   except Exception as ex:
     print("exception [%s]" % ex)
   # end try
