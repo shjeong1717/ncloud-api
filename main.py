@@ -9,9 +9,6 @@ import subprocess
 import config as con
 import function as fnc
 
-# set logger
-cLog = cLogger.cLogger("main")
-logger = cLog.set_logger()
 
 def main():
   exec(open("hello.py").read())
