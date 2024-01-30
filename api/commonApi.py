@@ -210,3 +210,56 @@ def getRuleGroupList(param):
   print(finData)
   print("================= Rule Group Info End =================")
 # end def
+
+
+# 메트릭 디멘션 조회
+def getMetricDimension(param):
+  # request body
+  body = {}
+  body["prodKey"] = param['prodKey']
+  
+  arg = {}
+  arg['method'] = 'POST'
+  arg['path'] = '/cw_fea/real/cw/api/rule/group/metric/search'
+  arg['requestBody'] = body
+  
+  result = send_api(arg)
+  rsltData = json.loads(result)['data']
+  
+  listData = ['all']
+  for metric in rsltData['metrics']:
+    for dim in metric['dimensions']:
+      if dim['dim'] == 'type':
+        listData.append(dim['val'])
+      # end if
+    # end for
+  # end for
+  setData = set(listData)
+  listData = list(setData)
+  listData.sort()
+  finData = json.dumps(listData, indent=2, ensure_ascii=False)
+  
+  return finData
+# end def
+
+
+# 메트릭 리소스 조회
+def getMetricList(param):
+  # request body
+  body = {}
+  body["prodKey"] = param['prodKey']
+  body["query"] = param['query']    # Search in metrics
+  body["dimValues"] = {
+    "name": "type",
+    "value": param['dim']
+  }
+  
+  arg = {}
+  arg['method'] = 'POST'
+  arg['path'] = '/cw_fea/real/cw/api/rule/group/metric/search'
+  arg['requestBody'] = body
+  
+  result = send_api(arg)
+  
+  return result
+# end def

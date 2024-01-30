@@ -39,14 +39,46 @@ def send_api(param):
 # end def
 
 
-# metricsCreate
-def metricsCreate(param):
+# metricsSearch
+def metricsSearch():
   x = input("\n\n클라우드 플랫폼 상품의 prodKey(cw_key)를 조회하시겠습니까? [ok] : ")
   if x == 'ok':
     commonApi.getSystemSchemaKeyList()
   # end if
   
-  x = input("\n\메트릭그룹을 생성하시겠습니까??\n생성하려면 yaml파일을 작성하고 [ok] 를 누르세요 : ")
+  prodKey = input("\n\nprodKey를 입력하세요. [input 'prodKey'] : ")
+  if prodKey != '':
+    arg = {
+      'prodKey': prodKey,
+      'query': ''
+    }
+    listDim = commonApi.getMetricDimension(arg)
+    dim = input("\n\n조회할 메트릭 디멘션을 입력하세요. 전체 검색은 'all'을 입력하세요. [input string]\n"+ listDim +" : ")
+    query = input("\n\n메트릭 이름으로 검색어를 입력하세요. [input string] : ")
+    
+    if dim == 'all':
+      arg['dim'] = ''
+    else:
+      arg['dim'] = dim
+    # end if
+    if query != '':
+      arg['query'] = query
+    # end if
+    listMetric = commonApi.getMetricList(arg)
+    clipboard.copy(listMetric)
+    print(listMetric +'\n조회 결과가 클립보드에 복사되었습니다.')
+  # end if
+# end def
+
+
+# metricsCreate
+def metricsCreate(param):
+  x = input("\n\n메트릭 정보를 조회하시겠습니까? [ok] : ")
+  if x == 'ok':
+    metricsSearch()
+  # end if
+  
+  x = input("\n\n메트릭그룹을 생성하시겠습니까??\n yaml파일이 준비되면 [ok] 를 누르세요 : ")
   if x == 'ok':
     with open(filename) as yamlfile:
       yamldata = yaml.full_load(yamlfile)
@@ -79,13 +111,13 @@ def metricsCreate(param):
 
 
 # metricsSelect
-def metricsSelect(param):
+def metricsSelect():
   x = input("\n\n클라우드 플랫폼 상품의 prodKey(cw_key)를 조회하시겠습니까? [ok] : ")
   if x == 'ok':
     commonApi.getSystemSchemaKeyList()
   # end if
   
-  prodKey = input("\n\nprodKey를 입력하세요. 메트릭그룹을 조회합니다. [input 'prodKey'] : ")
+  prodKey = input("\n\nprodKey를 입력하세요. 메트릭 그룹을 조회합니다. [input 'prodKey'] : ")
   if prodKey != '':
     arg = {}
     arg['method'] = 'GET'
@@ -104,26 +136,17 @@ def metricsSelect(param):
     clipboard.copy(finData)
     print(finData +"\n\n결과가 클립보드에 저장되었습니다.")
   # end if
-  
 # end def
 
 
 # metricsUpdate
 def metricsUpdate(param):
-  x = input("\n\n클라우드 플랫폼 상품의 prodKey(cw_key)를 조회하시겠습니까? [ok] : ")
+  x = input("\n\n 메트릭 정보를 조회하시겠습니까? [ok] : ")
   if x == 'ok':
-    commonApi.getSystemSchemaKeyList()
+    metricsSearch()
   # end if
   
-  prodKey = input("\n\nprodKey를 입력하세요. 감시대상그룹 ID를 조회합니다. [input 'prodKey'] : ")
-  if prodKey != '':
-    arg = {
-      'prodKey': prodKey,
-    }
-    commonApi.getMonitorGrpKey(arg)
-  # end if
-  
-  x = input("\n\n감시대상그룹을 수정하시겠습니까??\n수정하려면 yaml파일을 작성하고 [ok] 를 누르세요 : ")
+  x = input("\n\n 메트릭 그룹울 수정하시겠습니까??\n yaml파일이 준비되면 [ok] 를 누르세요 : ")
   if x == 'ok':
     with open(filename) as yamlfile:
       yamldata = yaml.full_load(yamlfile)
@@ -132,25 +155,25 @@ def metricsUpdate(param):
     list = yamldata[param['dataType']]
     
     for data in list:
-      arg = {}
-      arg['method'] = 'PUT'
-      arg['path'] = '/cw_fea/real/cw/api/rule/group/monitor'
-      
       # request body
       body = {}
       body["prodKey"] = data['prodKey']
       body["id"] = data['id']
       body["groupName"] = data['groupName']
       body["groupDesc"] = data['groupDesc']
-      body["monitorGroupItemList"] = data['monitorGroupItemList']
+      body["metricsGroupItems"] = data['metricsGroupItems']
+      
+      arg = {}
+      arg['method'] = 'POST'
+      arg['path'] = '/cw_fea/real/cw/api/rule/group/metrics/update'
       arg['requestBody'] = body
       
       result = send_api(arg)
       
       if result['status'] == 200:
-        print("감시대상그룹 수정 완료")
+        print("메트릭 정보 수정 완료")
       else:
-        print("감시대상그룹 수정 실패 [ %s ]" % result['data']['msg'])
+        print("메트릭 정보 수정 실패 [ %s ]" % result['data']['msg'])
     # end for
   # end if
 # end def
@@ -163,15 +186,15 @@ def metricsDelete(param):
     commonApi.getSystemSchemaKeyList()
   # end if
   
-  prodKey = input("\n\nprodKey를 입력하세요. 감시대상그룹 ID를 조회합니다. [input 'prodKey'] : ")
+  prodKey = input("\n\n prodKey를 입력하세요. 메트릭 그룹 ID를 조회합니다. [input 'prodKey'] : ")
   if prodKey != '':
     arg = {
       'prodKey': prodKey,
     }
-    commonApi.getMonitorGrpKey(arg)
+    commonApi.getMetricGrpKey(arg)
   # end if
   
-  x = input("\n\n감시대상그룹을 삭제하시겠습니까??\n삭제하려면 yaml파일을 작성하고 [ok] 를 누르세요 : ")
+  x = input("\n\n 메트릭 그룹을 삭제하시겠습니까??\n 삭제하려면 yaml파일을 작성하고 [ok] 를 누르세요 : ")
   if x == 'ok':
     with open(filename) as yamlfile:
       yamldata = yaml.full_load(yamlfile)
@@ -182,7 +205,7 @@ def metricsDelete(param):
     for data in list:
       arg = {}
       arg['method'] = 'DELETE'
-      arg['path'] = '/cw_fea/real/cw/api/rule/group/monitor?prodKey='+ data['prodKey']
+      arg['path'] = '/cw_fea/real/cw/api/rule/group/metrics/del?prodKey='+ data['prodKey']
       
       # requestBody
       body = []
@@ -194,9 +217,9 @@ def metricsDelete(param):
       result = send_api(arg)
       
       if result['status'] == 200:
-        print("감시대상그룹 삭제 완료")
+        print("메트릭 그룹 삭제 완료")
       else:
-        print("감시대상그룹 삭제 실패 [ %s ]" % result['data']['msg'])
+        print("메트릭 그룹 삭제 실패 [ %s ]" % result['data']['msg'])
     # end for
   # end if
 # end def
@@ -209,6 +232,7 @@ def main():
   2. 조회
   3. 수정
   4. 삭제
+  5. 메트릭 리소스 조회
   """
   x = input(inputMsg)
   arg = {}
@@ -218,13 +242,17 @@ def main():
     metricsCreate(arg)
   elif x == '2':
     # arg['dataType'] = 'selectData'
-    metricsSelect(arg)
+    metricsSelect()
   elif x == '3':
     arg['dataType'] = 'updateData'
     metricsUpdate(arg)
   elif x == '4':
     arg['dataType'] = 'deleteData'
     metricsDelete(arg)
+  # end if
+  elif x == '5':
+    # arg['dataType'] = 'deleteData'
+    metricsSearch()
   # end if
 # end def
 

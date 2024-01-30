@@ -1,33 +1,43 @@
 createData:
   - prodKey: "460438474722512896"
-    groupName: server group 1
-    groupDesc: group of server1
+    groupName: server new group
+    groupDesc: new group of server
     metricsGroupItems:
-      - metric: "used_rto"
-        desc: "CPU used ratio"
+      - metric: "avg_cpu_used_rto"
+        desc: "CPU Utilization Average"
         eventLevel: "INFO"
         condition: "GE"
         calculation: "AVG"
         duration: "1"
         threshold: "50.0"
-        # dimensions: 
-        #   - dim:
-        #     val:
-      - metric: "idle_rto"
-        desc: "idle ratio"
+        dimensions: 
+          - dim: "type"
+            val: "svr"
+      - metric: "max_cpu_used_rto"
+        desc: "CPU used ratio maximum"
         eventLevel: "INFO"
         condition: "GE"
         calculation: "AVG"
         duration: "1"
         threshold: "50.0"
-        # dimensions:
-        #   - dim:
-        #     val:
+        dimensions:
+          - dim: "type"
+            val: "svr"
+      - metric: "proc_mem_usert"
+        desc: "all processes memory used ratio"
+        eventLevel: "INFO"
+        condition: "GE"
+        calculation: "AVG"
+        duration: "1"
+        threshold: "50.0"
+        dimensions:
+          - dim: "type"
+            val: "svr"
 updateData:
   - prodKey: "460438474722512896"
-    id: "947194920677019648"
-    groupName: server group 1
-    groupDesc: group of server 1
+    id: "946910851774947328"
+    groupName: cpu metrics modify
+    groupDesc: group of server modify
     metricsGroupItems:
       - metric: "used_rto"
         desc: "CPU used ratio"
@@ -36,21 +46,30 @@ updateData:
         calculation: "AVG"
         duration: "1"
         threshold: "50.0"
-        # dimensions: 
-        #   - dim:
-        #     val:
-      - metric: "idle_rto"
-        desc: "idle ratio"
+        dimensions: 
+          - dim: "type"
+            val: "cpu"
+      - metric: "io_wait_rto"
+        desc: "IO wait ratio(Linux)"
         eventLevel: "INFO"
         condition: "GE"
         calculation: "AVG"
-        duration: "5"
-        threshold: "30.0"
-        # dimensions:
-        #   - dim:
-        #     val:
+        duration: "1"
+        threshold: "50.0"
+        dimensions:
+          - dim: "type"
+            val: "cpu"
+      - metric: "sys_rto"
+        desc: "system ratio(Linux)"
+        eventLevel: "INFO"
+        condition: "GE"
+        calculation: "AVG"
+        duration: "1"
+        threshold: "50.0"
+        dimensions:
+          - dim: "type"
+            val: "cpu"
 deleteData:
-  - prodKey: "460438474722512896"
+  - prodKey: "635182529925746688"
     groupIds:
-      - "947197192505012224"
-      - "947194920677019648"
+      - "949382357419429888"
