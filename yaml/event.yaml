@@ -1,0 +1,49 @@
+createData:
+  - prodKey: "460438474722512896"
+    groupName: server event 3
+    groupDesc: event of server 3
+    monitorGroupKey:
+      - "950097704208445440"
+    metricsGroupKey:
+      - "946910851774947328"
+    recipientNotifications:
+      - groupName: "jsh noti"
+        groupNum: "7158"
+        notifyTypes:
+          - "SMS"
+          - "EMAIL"
+    personalNotificationRecipients:
+      # - managerName: "정상훈"
+      #   managerNo: 742063
+      #   notifyTypes:
+      #     - "SMS"
+      #     - "EMAIL"
+updateData:
+  - prodKey: "460438474722512896"
+    id: "949336637047967744"
+    groupName: "server event 3"
+    groupDesc: "event of server 3 mod"
+    monitorGroupKey:
+      - "726460230787010560"
+    metricsGroupKey:
+      - "837707886166679552"
+    recipientNotifications:
+    #   - groupName: "jsh noti"
+    #     groupNum: "7158"
+    #     notifyTypes:
+    #       - "SMS"
+    #       - "EMAIL"
+    personalNotificationRecipients:
+      - managerName: "정상훈"
+        managerNo: 742063
+        notifyTypes:
+          - "SMS"
+          - "EMAIL"
+    suspendRuleItems:
+      - resourceId: "20220231"
+        metricGroupItemId: "837707784685494273"
+deleteData:
+  - prodKey: "460438474722512896"
+    ruleGroupId: "950117021805326336"
+  - prodKey: "460438474722512896"
+    ruleGroupId: "947563273052635136"

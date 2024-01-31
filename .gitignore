@@ -1,5 +1,4 @@
 *.pyc
 *.log
-*.yaml
 __pycache__/
 config.py
