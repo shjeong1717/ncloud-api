@@ -70,6 +70,6 @@ updateData:
           - dim: "type"
             val: "cpu"
 deleteData:
-  - prodKey: "635182529925746688"
+  - prodKey: "460438474722512896"
     groupIds:
-      - "949382357419429888"
+      - "950104811485929472"
