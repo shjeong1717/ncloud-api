@@ -16,4 +16,5 @@ from api import commonApi
 args = {
   'prodKey': '460438474722512896'
 }
-commonApi.getMetricDimension(args)
+result = commonApi.getMetricDimension(args)
+print(result)

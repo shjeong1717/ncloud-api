@@ -1,7 +1,10 @@
 # import library
+import os, sys
 import logging
 import logging.handlers
-from _lib import config as con
+
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+import config as con
 
 
 # logging class
@@ -20,7 +23,7 @@ class cLogger :
     sh.setFormatter(formatter)
     self.logger.addHandler(sh)
 
-    filename = "/Users/sanghoonjeong/Work/cloud/workspace/ncloud-api/_log/ncloud-api.log"
+    filename = con._HOME_DIR +"/_log/ncloud-api.log"
     fileMaxByte = 1024 * 1024 * 1000	#1.0GB
     fh = logging.handlers.TimedRotatingFileHandler(filename, when='d', interval=1, encoding='utf-8')
     #fh = logging.FileHandler(filename)

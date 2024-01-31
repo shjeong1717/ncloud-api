@@ -37,10 +37,12 @@ def getResourceList():
   arg['path'] = '/api/v1/resources'
   
   # request body
+  # productName, resourceType 참고 페이지 : https://guide.ncloud-docs.com/docs/management-rmgr-1-1-2#NRNNcloudResourceNames
   body = {
     "pageIndex": 0,
     "pageSize": 100,
-    "productName": "ObjectStorage"
+    "productName": "VPCServer",
+    "resourceType": "Server"
   }
   arg['requestBody'] = body
   

@@ -12,6 +12,10 @@ import function as fnc
 
 def send_api(param):
   API_HOST = "https://cw.apigw.ntruss.com"
+  if 'apiHost' in param:
+    API_HOST = param['apiHost']
+  # end if
+  
   url = API_HOST + param['path']
   
   objHeader = {}
@@ -226,7 +230,7 @@ def getMetricDimension(param):
   result = send_api(arg)
   rsltData = json.loads(result)['data']
   
-  listData = ['all']
+  listData = []
   for metric in rsltData['metrics']:
     for dim in metric['dimensions']:
       if dim['dim'] == 'type':
@@ -262,4 +266,26 @@ def getMetricList(param):
   result = send_api(arg)
   
   return result
+# end def
+
+
+# get server instance
+def getResourceList(param):
+  # request body
+  body = {}
+  body["pageIndex"] = param['pageIndex']
+  body["pageSize"] = param['pageSize']
+  body["productName"] = param['productName']
+  body["resourceType"] = param['resourceType']
+  
+  arg = {}
+  arg['apiHost'] = 'https://resourcemanager.apigw.ntruss.com'
+  arg['method'] = 'POST'
+  arg['path'] = '/api/v1/resources'
+  arg['requestBody'] = body
+  
+  result = send_api(arg)
+  rsltData = json.loads(result)['data']
+  
+  return rsltData
 # end def

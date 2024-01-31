@@ -1,0 +1,43 @@
+processPlugin:
+  set:
+    - instanceNo: "21368611"
+      type: ""
+      configList:
+        - "java"
+        - "tomcat"
+        - "mysql"
+        - "rundeck"
+  delete:
+    - instanceNo: "21368611"
+      type: ""
+      configList:
+        - "java"
+        - "tomcat"
+        - "mysql"
+        - "rundeck"
+portPlugin:
+  set:
+    - instanceNo: "21368611"
+      type: ""
+      portList:
+        - 8080
+        - 80
+        - 8000
+  delete:
+    - instanceNo: "21368611"
+      type: ""
+      portList:
+        - 8000
+filePlugin:
+  set:
+    - instanceNo: "21368611"
+      type: ""
+      configList:
+        - "/bin/sh"
+        - "/bin/bash"
+  delete:
+    - instanceNo: "21368611"
+      type: ""
+      configList:
+        - "/bin/sh"
+        - "/bin/bash"
