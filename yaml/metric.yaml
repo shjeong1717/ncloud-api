@@ -1,7 +1,7 @@
 createData:
   - prodKey: "460438474722512896"
-    groupName: server new group
-    groupDesc: new group of server
+    groupName: cpu metric group
+    groupDesc: metric group of cpu
     metricsGroupItems:
       - metric: "avg_cpu_used_rto"
         desc: "CPU Utilization Average"
@@ -35,9 +35,9 @@ createData:
             val: "svr"
 updateData:
   - prodKey: "460438474722512896"
-    id: "946910851774947328"
-    groupName: cpu metrics modify
-    groupDesc: group of server modify
+    id: "950104811485929472"
+    groupName: cpu metrics modify 2
+    groupDesc: metric group modify of cpu
     metricsGroupItems:
       - metric: "used_rto"
         desc: "CPU used ratio"

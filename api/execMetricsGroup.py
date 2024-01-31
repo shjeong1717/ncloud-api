@@ -64,9 +64,35 @@ def metricsSearch():
     if query != '':
       arg['query'] = query
     # end if
-    listMetric = commonApi.getMetricList(arg)
-    clipboard.copy(listMetric)
-    print(listMetric +'\n조회 결과가 클립보드에 복사되었습니다.')
+    result = commonApi.getMetricList(arg)
+    rsltData = json.loads(result)
+    
+    listData = []
+    for metric in rsltData['data']['metrics']:
+      objData = {}
+      objData['prodKey'] = metric['prodKey']
+      objData['metric'] = metric['metric']
+      
+      if 'desc' in metric:
+        objData['desc'] = metric['desc']
+      # end if
+      
+      for dim in metric['dimensions']:
+        if dim['dim'] == 'type':
+          objData['dimensions'] = dim
+        # end if
+      # end for
+      
+      for i, (key, value) in enumerate(metric['options'].items()):
+        if i == 0:
+          objData['calculation'] = value
+        # end if
+      # end for
+      listData.append(objData)
+    # end for
+    finData = json.dumps(listData, indent=2, ensure_ascii=False)
+    clipboard.copy(finData)
+    print(finData +'\n조회 결과가 클립보드에 복사되었습니다.')
   # end if
 # end def
 
